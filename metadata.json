@@ -1,0 +1,5 @@
+{
+  "name": "InvoicePro AI",
+  "description": "A smart, free, and AI-powered invoice generator that allows users to create professional invoices from simple text commands. It features an AI assistant to auto-fill fields, customizable templates, and PDF export functionality.",
+  "requestFramePermissions": []
+}
