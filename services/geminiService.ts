@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { InvoiceData } from '../types';
 
@@ -14,6 +13,10 @@ const ai = new GoogleGenAI({ apiKey: API_KEY });
 const invoiceSchema = {
   type: Type.OBJECT,
   properties: {
+    invoiceNumber: {
+      type: Type.STRING,
+      description: "A unique identifier for the invoice (e.g., 'INV-001', '2024-07-A'). If not specified by the user, default to 'INV-001'."
+    },
     clientName: {
       type: Type.STRING,
       description: "The full name of the client or company being invoiced."
@@ -35,14 +38,14 @@ const invoiceSchema = {
       description: "The invoice due date in YYYY-MM-DD format. If not specified by the user, calculate it as 30 days from today's date."
     }
   },
-  required: ["clientName", "description", "amount", "currency", "dueDate"]
+  required: ["invoiceNumber", "clientName", "description", "amount", "currency", "dueDate"]
 };
 
 
 export const generateInvoiceData = async (prompt: string): Promise<InvoiceData> => {
   try {
     const today = new Date().toISOString().split('T')[0];
-    const systemInstruction = `You are an intelligent invoice-parsing assistant. Your task is to accurately extract invoice details from the user's text. Today's date is ${today}. Return the data in the specified JSON format. If a due date isn't mentioned, set it to 30 days from today. Ensure the currency is a standard 3-letter code.`;
+    const systemInstruction = `You are an intelligent invoice-parsing assistant. Your task is to accurately extract invoice details from the user's text. Today's date is ${today}. Return the data in the specified JSON format. If a due date isn't mentioned, set it to 30 days from today. If an invoice number isn't mentioned, set it to 'INV-001'. Ensure the currency is a standard 3-letter code.`;
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
@@ -59,6 +62,7 @@ export const generateInvoiceData = async (prompt: string): Promise<InvoiceData> 
 
     // Basic validation
     if (
+      !parsedData.invoiceNumber ||
       !parsedData.clientName ||
       !parsedData.description ||
       typeof parsedData.amount !== 'number' ||

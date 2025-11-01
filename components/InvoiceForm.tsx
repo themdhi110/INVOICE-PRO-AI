@@ -70,7 +70,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
     doc.text('Date:', 140, 55);
     doc.text('Due Date:', 140, 60);
     doc.setFont('helvetica', 'normal');
-    doc.text('INV-001', 195, 50, { align: 'right' });
+    doc.text(invoiceData.invoiceNumber, 195, 50, { align: 'right' });
     doc.text(new Date().toLocaleDateString(), 195, 55, { align: 'right' });
     doc.text(new Date(invoiceData.dueDate).toLocaleDateString(), 195, 60, { align: 'right' });
     
@@ -120,7 +120,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
     doc.text('Your Company Name', 15, 55);
     doc.text('123 Your Street', 15, 60);
     
-    doc.text(`Invoice #: INV-001`, 15, 75);
+    doc.text(`Invoice #: ${invoiceData.invoiceNumber}`, 15, 75);
     doc.text(`Date: ${new Date().toLocaleDateString()}`, 15, 80);
     doc.text(`Due Date: ${new Date(invoiceData.dueDate).toLocaleDateString()}`, 15, 85);
     
@@ -176,7 +176,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
     doc.text('Bill To', 80, startY - 5);
 
 
-    doc.text(`INV-001`, 195, startY, { align: 'right' });
+    doc.text(invoiceData.invoiceNumber, 195, startY, { align: 'right' });
     doc.text('Invoice #', 195, startY - 5, { align: 'right' });
 
     doc.text(new Date(invoiceData.dueDate).toLocaleDateString(), 195, startY + 15, { align: 'right' });
@@ -234,7 +234,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
     doc.text('Date:', detailsX, 55);
     doc.text('Due Date:', detailsX, 60);
     doc.setFont('helvetica', 'normal');
-    doc.text('INV-001', 195, 50, { align: 'right' });
+    doc.text(invoiceData.invoiceNumber, 195, 50, { align: 'right' });
     doc.text(new Date().toLocaleDateString(), 195, 55, { align: 'right' });
     doc.text(new Date(invoiceData.dueDate).toLocaleDateString(), 195, 60, { align: 'right' });
 
@@ -288,7 +288,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
     doc.setFont('helvetica', 'bold');
     doc.text('Invoice Number', 120, 60);
     doc.setFont('helvetica', 'normal');
-    doc.text('INV-001', 120, 66);
+    doc.text(invoiceData.invoiceNumber, 120, 66);
     
     doc.setFont('helvetica', 'bold');
     doc.text('Date of Issue', 120, 76);
@@ -422,8 +422,8 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
           <input type="text" name="clientName" id="clientName" value={invoiceData.clientName} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
         </div>
         <div>
-          <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">Due Date</label>
-          <input type="date" name="dueDate" id="dueDate" value={invoiceData.dueDate} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+          <label htmlFor="invoiceNumber" className="block text-sm font-medium text-gray-700">Invoice Number</label>
+          <input type="text" name="invoiceNumber" id="invoiceNumber" value={invoiceData.invoiceNumber || ''} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
         </div>
         <div className="md:col-span-2">
           <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
@@ -439,7 +439,11 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
                 <input type="text" name="currency" id="currency" value={invoiceData.currency} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
             </div>
         </div>
-        <div>
+         <div>
+          <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">Due Date</label>
+          <input type="date" name="dueDate" id="dueDate" value={invoiceData.dueDate} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+        </div>
+        <div className="md:col-span-2">
             <label htmlFor="logo" className="block text-sm font-medium text-gray-700">Your Logo (Optional)</label>
             <input type="file" name="logo" id="logo" onChange={handleLogoUpload} accept="image/png, image/jpeg" className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"/>
         </div>

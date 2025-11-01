@@ -1,5 +1,5 @@
-
 export interface InvoiceData {
+  invoiceNumber: string;
   clientName: string;
   description: string;
   amount: number;

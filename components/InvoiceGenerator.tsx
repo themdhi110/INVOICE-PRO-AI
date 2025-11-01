@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { generateInvoiceData } from '../services/geminiService';
 import { InvoiceData } from '../types';
@@ -38,7 +37,7 @@ const InvoiceGenerator: React.FC = () => {
   };
 
   const examplePrompts = [
-    "Invoice for $1500 to Acme Corp for web development services, due in 15 days.",
+    "Invoice INV-2024-01 for $1500 to Acme Corp for web development services, due in 15 days.",
     "Bill John Doe 300 EUR for a logo design project.",
     "Create an invoice for Smith & Co. for 2500 GBP for consulting work delivered today.",
   ];
