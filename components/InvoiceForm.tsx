@@ -359,9 +359,9 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
   ];
 
   return (
-    <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md animate-fade-in">
-        <div className="flex justify-between items-center mb-6 border-b pb-4">
-            <h3 className="text-xl font-bold text-gray-800">Generated Invoice</h3>
+    <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-md animate-fade-in transition-colors">
+        <div className="flex justify-between items-center mb-6 border-b pb-4 border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">Generated Invoice</h3>
             <button
                 onClick={exportToPdf}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
@@ -371,11 +371,11 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
             </button>
         </div>
 
-        <div className="mb-8 p-4 bg-gray-50 rounded-lg border">
-             <h4 className="text-lg font-semibold text-gray-800 mb-4">Customize</h4>
+        <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg border dark:border-gray-700">
+             <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Customize</h4>
              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Template</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Template</label>
                     <div className="flex flex-wrap gap-2">
                         {templates.map(({id, name}) => (
                             <button
@@ -385,7 +385,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
                                 className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${
                                     template === id
                                         ? 'bg-primary-600 text-white shadow'
-                                        : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
+                                        : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-600'
                                 }`}
                             >
                                 {name}
@@ -394,13 +394,13 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="accentColor" className="block text-sm font-medium text-gray-700">Accent Color</label>
-                    <div className="mt-2 relative flex items-center h-10 border border-gray-300 rounded-md shadow-sm">
+                    <label htmlFor="accentColor" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Accent Color</label>
+                    <div className="mt-2 relative flex items-center h-10 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm">
                         <input
                             type="text"
                             value={accentColor}
                             onChange={(e) => setAccentColor(e.target.value)}
-                            className="w-full pl-3 pr-12 h-full rounded-md focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-0"
+                            className="w-full pl-3 pr-12 h-full rounded-md focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-0 bg-transparent dark:text-white"
                             placeholder="#3b82f6"
                         />
                          <input
@@ -418,34 +418,34 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ initialData }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="clientName" className="block text-sm font-medium text-gray-700">Client Name</label>
-          <input type="text" name="clientName" id="clientName" value={invoiceData.clientName} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+          <label htmlFor="clientName" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Client Name</label>
+          <input type="text" name="clientName" id="clientName" value={invoiceData.clientName} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:text-white"/>
         </div>
         <div>
-          <label htmlFor="invoiceNumber" className="block text-sm font-medium text-gray-700">Invoice Number</label>
-          <input type="text" name="invoiceNumber" id="invoiceNumber" value={invoiceData.invoiceNumber || ''} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+          <label htmlFor="invoiceNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Invoice Number</label>
+          <input type="text" name="invoiceNumber" id="invoiceNumber" value={invoiceData.invoiceNumber || ''} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:text-white"/>
         </div>
         <div className="md:col-span-2">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-          <input type="text" name="description" id="description" value={invoiceData.description} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Description</label>
+          <input type="text" name="description" id="description" value={invoiceData.description} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:text-white"/>
         </div>
         <div className="grid grid-cols-2 gap-6">
             <div>
-                <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
-                <input type="number" name="amount" id="amount" value={invoiceData.amount} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+                <label htmlFor="amount" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Amount</label>
+                <input type="number" name="amount" id="amount" value={invoiceData.amount} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:text-white"/>
             </div>
             <div>
-                <label htmlFor="currency" className="block text-sm font-medium text-gray-700">Currency</label>
-                <input type="text" name="currency" id="currency" value={invoiceData.currency} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+                <label htmlFor="currency" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Currency</label>
+                <input type="text" name="currency" id="currency" value={invoiceData.currency} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:text-white"/>
             </div>
         </div>
          <div>
-          <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">Due Date</label>
-          <input type="date" name="dueDate" id="dueDate" value={invoiceData.dueDate} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"/>
+          <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Due Date</label>
+          <input type="date" name="dueDate" id="dueDate" value={invoiceData.dueDate} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:text-white"/>
         </div>
         <div className="md:col-span-2">
-            <label htmlFor="logo" className="block text-sm font-medium text-gray-700">Your Logo (Optional)</label>
-            <input type="file" name="logo" id="logo" onChange={handleLogoUpload} accept="image/png, image/jpeg" className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"/>
+            <label htmlFor="logo" className="block text-sm font-medium text-gray-700 dark:text-gray-400">Your Logo (Optional)</label>
+            <input type="file" name="logo" id="logo" onChange={handleLogoUpload} accept="image/png, image/jpeg" className="mt-1 block w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100 file:dark:bg-primary-900/50 file:dark:text-primary-300 hover:file:dark:bg-primary-900/70"/>
         </div>
       </div>
     </div>

@@ -48,9 +48,9 @@ const InvoiceGenerator: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md transition-shadow hover:shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-900 mb-1">Create Invoice with AI</h2>
-        <p className="text-gray-600 mb-4">
+      <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-md transition-shadow hover:shadow-lg">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">Create Invoice with AI</h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
           Simply describe the invoice you want to create. Our AI will handle the rest.
         </p>
         
@@ -60,15 +60,15 @@ const InvoiceGenerator: React.FC = () => {
             onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder='e.g., "Invoice for 300 USD for web design to John Doe"'
-            className="w-full h-28 p-4 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+            className="w-full h-28 p-4 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             disabled={isLoading}
           />
         </div>
-        <div className="mt-2 text-xs text-gray-500">
+        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
             Or try an example:
             <div className="flex flex-wrap gap-2 mt-1">
                 {examplePrompts.map((ex, index) => (
-                    <button key={index} onClick={() => handleExampleClick(ex)} className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full px-3 py-1 transition-colors">
+                    <button key={index} onClick={() => handleExampleClick(ex)} className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full px-3 py-1 transition-colors dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300">
                         {ex}
                     </button>
                 ))}
@@ -76,7 +76,7 @@ const InvoiceGenerator: React.FC = () => {
         </div>
 
         <div className="mt-4 flex flex-col sm:flex-row items-center justify-between">
-          <p className="text-xs text-gray-500 mb-2 sm:mb-0">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 sm:mb-0">
             Press <kbd className="font-sans font-semibold">Ctrl</kbd> + <kbd className="font-sans font-semibold">Enter</kbd> to generate.
           </p>
           <button
@@ -102,7 +102,7 @@ const InvoiceGenerator: React.FC = () => {
         </div>
 
         {error && (
-            <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+            <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg dark:bg-red-900/50 dark:border-red-700 dark:text-red-300">
                 <p><strong>Error:</strong> {error}</p>
             </div>
         )}
